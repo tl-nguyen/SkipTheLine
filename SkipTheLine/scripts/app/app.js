@@ -113,7 +113,7 @@ var app = (function (win) {
         home: {
             title: 'Home',
             description: 'Time is precious, skip the line ',
-            path: './images/logo.jpg',
+            path: './styles/images/logo.jpg',
             imageAlt: 'Skip the line logo',
             onFindNearest:function(){
                 //TODO: List all places in radius 1km

@@ -1,34 +1,59 @@
-(function(global) {
+var app = app || {};
+
+app.Places = (function () {
+    'use strict';
     
-    var app = global.app = global.app || {};
+    var placesModel = (function () {
+        
+        var placeModel = {
+            id: 'Id',
+            fields: {
+                Name: {
+                    field: 'Text',
+                    defaultValue: ''
+                }
+            }
+        }
+        
+        var placesDataSource = new kendo.data.DataSource({
+            type: 'everlive',
+            schema: {
+                model: placeModel
+            },
+            transport: {
+                typeName: 'Place'
+            },
+            change: function (e) {
+                console.log('fdsfdsafdsafs');
+                if (e.items && e.items.length > 0) {
+                    console.log('there are some places');
+                } else {
+                    console.log('there are no places');
+                }
+            },
+            sort: { 
+                field: 'Name', dir: 'desc' 
+            }
+        });
+        
+        return {
+            places: placesDataSource
+        };
+    }());
     
-   var PlacesListViewModel = kendo.data.ObservableObject.extend({
-        placesDataSource: null,
-        init: function () {
-            var that = this;
+    var placesViewModel = (function () {
+        
+        var placeSelected = function () {
             
-            kendo.data.ObservableObject.fn.init.apply(that, []);
-            var places = app.everlive.data('Place');
-            var dataSource = new kendo.data.DataSource({
-                data:places,
-            });            
-            that.set("placesDataSource", dataSource);
-        },
-        showItems: function (e) {
-            var that = new PlacesListViewModel();
-            
-            var data = that.get("placesDataSource");
-            
-            data.fetch(function() {
-                var id = e.view.params.uid;
-                var model = data.at(parseInt(id) - 1);
-                kendo.bind(e.view.element, model, kendo.mobile.ui);
-            });
-        },
-    });
+        };
+       
+        
+        return {
+            places: placesModel.places,
+            placeSelected: placeSelected,
+            //logout: logout
+        };
+    }());
     
-    app.exercises = {
-        viewModel: new ExercisesListViewModel(),
-    };
-    
-})(window);
+    return placesViewModel;
+});
