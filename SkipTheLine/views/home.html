@@ -1,3 +1,8 @@
 <div data-role="view" data-title="Home" data-layout="main" data-model="app.models.home">
   <h1 data-bind="html: title"></h1>
+    <h3 data-bind="html: description"></h3>
+    <img class= "home-pic" data-bind="attr: { src: path, alt: imageAlt }"/>
+    <button data-role ="button" data-bind="click: onFindNearest">
+        FIND NEAREST
+    </button>
 </div>

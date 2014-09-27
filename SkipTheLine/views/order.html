@@ -1,0 +1,11 @@
+<div data-role="view" data-title="Order" data-layout="main" data-model="app.models.order">
+  <ul data-role="listview" data-style="inset" data-template="ordersTemplate" data-bind="source: ds"></ul>
+</div>
+
+<!-- this is the template used by the listview. template items are automatically
+     wrapped in an <li> by Kendo UI Mobile -->
+
+
+<script type="text/x-kendo-template" id="ordersTemplate">
+  <a data-bind="click: alert">#: data.name #</a>
+</script>
