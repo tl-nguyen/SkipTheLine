@@ -60,22 +60,6 @@ var app = (function (win) {
         document.addEventListener('backbutton', onBackKeyDown, false);
 
         navigator.splashscreen.hide();
-
-        if (analytics.isAnalytics()) {
-            analytics.Start();
-        }
-        
-        // Initialize AppFeedback
-        if (app.isKeySet(appSettings.feedback.apiKey)) {
-            try {
-                feedback.initialize(appSettings.feedback.apiKey);
-            } catch (err) {
-                console.log('Something went wrong:');
-                console.log(err);
-            }
-        } else {
-            console.log('Telerik AppFeedback API key is not set. You cannot use feedback service.');
-        }
     };
 
     // Handle "deviceready" event
@@ -87,8 +71,15 @@ var app = (function (win) {
                               scheme: appSettings.everlive.scheme
                           });
 
-    var emptyGuid = '00000000-0000-0000-0000-000000000000';
+    var os = kendo.support.mobileOS,
+        statusBarStyle = os.ios && os.flatVersion >= 700 ? 'black-translucent' : 'black';
 
+    // Initialize KendoUI mobile application
+    var mobileApp = new kendo.mobile.Application(document.body, {
+                                                     transition: 'slide',
+                                                     statusBarStyle: statusBarStyle,
+                                                     skin: 'flat'
+                                                 });
     var AppHelper = {
 
         // Return user profile picture url
@@ -120,19 +111,11 @@ var app = (function (win) {
         }
     };
 
-    var os = kendo.support.mobileOS,
-        statusBarStyle = os.ios && os.flatVersion >= 700 ? 'black-translucent' : 'black';
-
-    // Initialize KendoUI mobile application
-    var mobileApp = new kendo.mobile.Application(document.body, {
-                                                     transition: 'slide',
-                                                     statusBarStyle: statusBarStyle,
-                                                     skin: 'flat'
-                                                 });
-
-    var getYear = (function () {
-        return new Date().getFullYear();
-    }());
+    var models = {
+        home: {
+            title: 'Home'
+        }
+    };
 
     return {
         showAlert: showAlert,
@@ -140,8 +123,8 @@ var app = (function (win) {
         showConfirm: showConfirm,
         isKeySet: isKeySet,
         mobileApp: mobileApp,
-        helper: AppHelper,
         everlive: el,
-        getYear: getYear
+        helper: AppHelper,
+        models: models
     };
 }(window));
