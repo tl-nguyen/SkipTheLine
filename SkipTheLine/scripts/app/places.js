@@ -2,19 +2,19 @@ var app = app || {};
 
 app.Places = (function () {
     'use strict';
-    
+
     var placesModel = (function () {
-        
+
         var placeModel = {
             id: 'Id',
             fields: {
                 Name: {
-                    field: 'Text',
+                    field: 'Name',
                     defaultValue: ''
                 }
             }
-        }
-        
+        };
+
         var placesDataSource = new kendo.data.DataSource({
             type: 'everlive',
             schema: {
@@ -24,36 +24,36 @@ app.Places = (function () {
                 typeName: 'Place'
             },
             change: function (e) {
-                console.log('fdsfdsafdsafs');
                 if (e.items && e.items.length > 0) {
                     console.log('there are some places');
                 } else {
                     console.log('there are no places');
                 }
             },
-            sort: { 
-                field: 'Name', dir: 'desc' 
+            sort: {
+                field: 'Name', dir: 'desc'
             }
         });
-        
+
         return {
             places: placesDataSource
         };
     }());
-    
+
     var placesViewModel = (function () {
-        
-        var placeSelected = function () {
-            
+
+        var placeSelected = function (e) {
+            console.log(e.data);
+            app.mobileApp.navigate('views/placeMenuView.html?uid=' + e.data.uid);
         };
-       
-        
+
+
         return {
             places: placesModel.places,
             placeSelected: placeSelected,
             //logout: logout
         };
     }());
-    
+
     return placesViewModel;
-});
+}());

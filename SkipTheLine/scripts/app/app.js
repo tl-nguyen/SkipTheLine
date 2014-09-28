@@ -110,29 +110,16 @@ var app = (function (win) {
     };
 
     var models = {
-        home: {
-            title: 'Home',
-            description: 'Time is precious, skip the line ',
-            path: './styles/images/logo.jpg',
-            imageAlt: 'Skip the line logo',
-            onFindNearest:function(){
-                //TODO: List all places in radius 1km
-                alert('clicked');
-             },
-        },
         places: {
           title: 'Places',
             //change later
           ds: new kendo.data.DataSource({
             data: [{ id: 1, name: 'PizziFrizi' }, { id: 2, name: 'Subway' }, { id: 3, name: 'MacDonalds' }]
-          }),
+          })
         },
         order: {
-          title: 'Order',
-          alert: function(e) {
-            alert(e.data.name);
-          }
-        },
+
+        }
     };
 
     return {
@@ -142,7 +129,6 @@ var app = (function (win) {
         isKeySet: isKeySet,
         mobileApp: mobileApp,
         everlive: el,
-        helper: AppHelper,
-        models: models
+        helper: AppHelper
     };
 }(window));
