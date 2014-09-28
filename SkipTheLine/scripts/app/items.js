@@ -39,7 +39,11 @@ app.Items = (function () {
                         click: function (e) {
                             if (e.dataItem !== undefined)
                             {
-                                navigator.notification.vibrate();
+                                navigator.notification.alert(
+                                    "You've inserted '" + e.dataItem.Name + "' to the order",  // message
+                                    '',            // title
+                                    'Hey!'   // buttonName
+                                );
                                 console.log(e.dataItem);
                             }
                         }
