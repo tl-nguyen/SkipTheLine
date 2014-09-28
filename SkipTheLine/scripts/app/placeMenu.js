@@ -18,13 +18,8 @@ app.PlaceMenu = (function () {
             });
         };
 
-        var itemSelected = function (e) {
-            console.log('faaaaaaaaa');
-        };
-
         return {
-            show: show,
-            itemSelected: itemSelected
+            show: show
         }
 
     }());

@@ -24,7 +24,6 @@ app.Items = (function () {
         };
 
         var itemsDataSource = new kendo.data.DataSource({
-            autoSync: true,
             type: 'everlive',
             schema: {
                 model: itemModel
@@ -36,7 +35,13 @@ app.Items = (function () {
                 if (e.items && e.items.length > 0) {
                     $('#items-listview').kendoMobileListView({
                         dataSource: e.items,
-                        template: kendo.template($('#placeMenuTemplate').html())
+                        template: kendo.template($('#placeMenuTemplate').html()),
+                        click: function (e) {
+                            if (e.dataItem !== undefined)
+                            {
+                                console.log(e.dataItem);
+                            }
+                        }
                     });
                 } else {
                     $('#items-listview').empty();

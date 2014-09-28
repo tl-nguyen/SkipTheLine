@@ -23,13 +23,6 @@ app.Places = (function () {
             transport: {
                 typeName: 'Place'
             },
-            change: function (e) {
-                if (e.items && e.items.length > 0) {
-                    console.log('there are some places');
-                } else {
-                    console.log('there are no places');
-                }
-            },
             sort: {
                 field: 'Name', dir: 'desc'
             }
@@ -49,7 +42,7 @@ app.Places = (function () {
 
         return {
             places: placesModel.places,
-            placeSelected: placeSelected,
+            placeSelected: placeSelected
             //logout: logout
         };
     }());
