@@ -78,7 +78,7 @@ var app = (function (win) {
                                                      statusBarStyle: statusBarStyle,
                                                      skin: 'flat'
                                                  });
-    var AppHelper = {
+    var appHelper = {
         // Return user profile picture url
         resolveProfilePictureUrl: function (id) {
             if (id && id !== emptyGuid) {
@@ -102,6 +102,23 @@ var app = (function (win) {
             return kendo.toString(new Date(dateString), 'MMM d, yyyy');
         },
 
+        resolveCurrentLocation: function () {
+            var deferred = new $.Deferred();
+
+            var onSuccess = function(position) {
+                deferred.resolve(position);
+            };
+
+            var onError = function (error) {
+                alert('code: '    + error.code    + '\n' +
+                    'message: ' + error.message + '\n');
+            };
+
+            navigator.geolocation.getCurrentPosition(onSuccess, onError);
+
+            return deferred.promise();
+        },
+
         // Current user logout
         logout: function () {
             return el.Users.logout();
@@ -115,6 +132,6 @@ var app = (function (win) {
         isKeySet: isKeySet,
         mobileApp: mobileApp,
         everlive: el,
-        helper: AppHelper
+        helper: appHelper
     };
 }(window));

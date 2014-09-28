@@ -14,8 +14,9 @@ app.PlaceMenu = (function () {
 
             var menuListViewModel = kendo.observable({
                 menuDataSource: app.Items.itemsDataSource,
-                itemSelected: function () {
-                    console.log('selected');
+                itemSelected: function (e) {
+
+                    console.log(e.data);
                 }
             });
 
