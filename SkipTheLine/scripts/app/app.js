@@ -46,10 +46,6 @@ var app = (function (win) {
             };
 
             if (confirmed === true || confirmed === 1) {
-                // Stop EQATEC analytics monitor on app exit
-                if (analytics.isAnalytics()) {
-                    analytics.Stop();
-                }
                 AppHelper.logout().then(exit, exit);
             }
         }, 'Exit', ['OK', 'Cancel']);
@@ -70,6 +66,8 @@ var app = (function (win) {
                               apiKey: appSettings.everlive.apiKey,
                               scheme: appSettings.everlive.scheme
                           });
+
+    var emptyGuid = '00000000-0000-0000-0000-000000000000';
 
     var os = kendo.support.mobileOS,
         statusBarStyle = os.ios && os.flatVersion >= 700 ? 'black-translucent' : 'black';

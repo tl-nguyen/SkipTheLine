@@ -79,14 +79,6 @@
     content: '';
 }
 
-#login-form .username:before {
-    background-image: url(images/icon-username.png);
-}
-
-#login-form .password:before {
-    background-image: url(images/icon-password.png);
-}
-
 #skipTheLineApp.km-flat .km-list input[type="text"]:not(.k-input),
 #skipTheLineApp.km-flat .km-list input[type="password"],
 #skipTheLineApp.km-flat .km-list input[type="email"],
