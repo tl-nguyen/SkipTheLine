@@ -3,49 +3,45 @@ var app = app || {};
 app.Places = (function () {
     'use strict';
 
-    var placesModel = (function () {
+    var placesListViewModel = kendo.data.ObservableObject.extend({
+        placesDataSource: null,
+        init: function () {
+            var that = this;
 
-        var placeModel = {
-            id: 'Id',
-            fields: {
-                Name: {
-                    field: 'Name',
-                    defaultValue: ''
+            var placeModel = {
+                id: 'Id',
+                fields: {
+                    Name: {
+                        field: 'Name',
+                        defaultValue: ''
+                    }
                 }
-            }
-        };
+            };
 
-        var placesDataSource = new kendo.data.DataSource({
-            type: 'everlive',
-            schema: {
-                model: placeModel
-            },
-            transport: {
-                typeName: 'Place'
-            },
-            sort: {
-                field: 'Name', dir: 'desc'
-            }
-        });
+            kendo.data.ObservableObject.fn.init.apply(that, []);
 
-        return {
-            places: placesDataSource
-        };
-    }());
+            var dataSource = new kendo.data.DataSource({
+                type: 'everlive',
+                schema: {
+                    model: placeModel
+                },
+                transport: {
+                    typeName: 'Place'
+                },
+                sort: {
+                    field: 'Name', dir: 'desc'
+                }
+            });
 
-    var placesViewModel = (function () {
+            that.set("placesDataSource", dataSource);
+        },
 
-        var placeSelected = function (e) {
+        placeSelected: function (e) {
             app.mobileApp.navigate('views/placeMenuView.html?id=' + e.data.id);
-        };
+        }
+    });
 
-
-        return {
-            places: placesModel.places,
-            placeSelected: placeSelected
-            //logout: logout
-        };
-    }());
-
-    return placesViewModel;
+    return {
+        viewModel: new placesListViewModel()
+    };
 }());

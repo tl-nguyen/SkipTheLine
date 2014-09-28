@@ -63,9 +63,9 @@ var app = (function (win) {
  
     // Initialize Everlive SDK
     var el = new Everlive({
-                              apiKey: appSettings.everlive.apiKey,
-                              scheme: appSettings.everlive.scheme
-                          });
+        apiKey: appSettings.everlive.apiKey,
+        scheme: appSettings.everlive.scheme
+    });
 
     var emptyGuid = '00000000-0000-0000-0000-000000000000';
 
@@ -79,7 +79,6 @@ var app = (function (win) {
                                                      skin: 'flat'
                                                  });
     var AppHelper = {
-
         // Return user profile picture url
         resolveProfilePictureUrl: function (id) {
             if (id && id !== emptyGuid) {
@@ -106,19 +105,6 @@ var app = (function (win) {
         // Current user logout
         logout: function () {
             return el.Users.logout();
-        }
-    };
-
-    var models = {
-        places: {
-          title: 'Places',
-            //change later
-          ds: new kendo.data.DataSource({
-            data: [{ id: 1, name: 'PizziFrizi' }, { id: 2, name: 'Subway' }, { id: 3, name: 'MacDonalds' }]
-          })
-        },
-        order: {
-
         }
     };
 

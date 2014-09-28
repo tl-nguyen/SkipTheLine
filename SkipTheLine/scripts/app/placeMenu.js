@@ -3,26 +3,26 @@ var app = app || {};
 app.PlaceMenu = (function () {
     'use strict';
 
-    var placeMenuViewModel = (function () {
+    function show(e){
+            var placeId = e.view.params.id;
 
-        var placeId;
-
-        var show = function (e) {
-
-            placeId = e.view.params.id;
-
-            app.Items.items.filter({
+            app.Items.itemsDataSource.filter({
                 field: 'Place',
                 operator: 'eq',
                 value: placeId
             });
-        };
 
-        return {
-            show: show
-        }
+            var menuListViewModel = kendo.observable({
+                menuDataSource: app.Items.itemsDataSource,
+                itemSelected: function () {
+                    console.log('selected');
+                }
+            });
 
-    }());
+            kendo.bind(e.view.element, menuListViewModel);
+    }
 
-    return placeMenuViewModel;
+    return {
+        show: show
+    };
 }());

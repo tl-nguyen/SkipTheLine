@@ -23,6 +23,7 @@ app.Login = (function () {
                 app.mobileApp.navigate('views/noApiKey.html', 'fade');
             }
 
+
             $loginUsername = $('#loginUsername');
             $loginPassword = $('#loginPassword');
 
@@ -37,8 +38,8 @@ app.Login = (function () {
         };
 
         var show = function () {
-            $loginUsername.val('');
-            $loginPassword.val('');
+//            $loginUsername.val('');
+//            $loginPassword.val('');
         };
 
         // Authenticate to use Backend Services as a particular user

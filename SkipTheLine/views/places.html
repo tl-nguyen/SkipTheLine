@@ -1,6 +1,15 @@
-<div data-role="view" data-title="Places" data-layout="main" class="places-view" data-model="app.Places">
-    <ul id="places-listview" data-style="inset" data-role="listview" data-template="placeTemplate"
-        data-bind="source: places"></ul>
+<div data-role="view"
+     data-title="Places"
+     data-layout="main"
+     data-model="app.Places.viewModel">
+
+    <ul id="places-listview"
+        data-style="inset"
+        data-bind="source: placesDataSource"
+        data-role="listview"
+        data-template="placeTemplate">
+    </ul>
+
 </div>
 
 <!-- Places ListView Template -->
