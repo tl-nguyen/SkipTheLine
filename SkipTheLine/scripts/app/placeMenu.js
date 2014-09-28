@@ -5,8 +5,7 @@ app.PlaceMenu = (function () {
 
     var placeMenuViewModel = (function () {
 
-        var placeId,
-            items;
+        var placeId;
 
         var show = function (e) {
 
@@ -15,12 +14,17 @@ app.PlaceMenu = (function () {
             app.Items.items.filter({
                 field: 'Place',
                 operator: 'eq',
-                value: e.view.params.id
+                value: placeId
             });
         };
 
+        var itemSelected = function (e) {
+            console.log('faaaaaaaaa');
+        };
+
         return {
-            show: show
+            show: show,
+            itemSelected: itemSelected
         }
 
     }());
