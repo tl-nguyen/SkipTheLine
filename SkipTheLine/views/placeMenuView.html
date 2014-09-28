@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+<div data-role="view" data-title="Menu" data-layout="main" class="places-view" data-show="app.PlaceMenu.show">
+    <ul id="items-listview" data-style="inset" data-role="listview" data-template="placeMenuTemplate"
+        data-bind="source: items"></ul>
+</div>
 
-</body>
-</html>
+<!-- Places ListView Template -->
+<script type="text/x-kendo-template" id="placeMenuTemplate">
+    <div data-role="touch" data-bind="events: { tap: itemSelected }">
+        <div class="item-content">
+            <h2 class="item-name">${Name}</h2>
+            <h3 class="item-description">${Description}</h3>
+            <h4 class="item-price">Price: ${Price} $</h4>
+        </div>
+    </div>
+</script>

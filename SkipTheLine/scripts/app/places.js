@@ -43,8 +43,7 @@ app.Places = (function () {
     var placesViewModel = (function () {
 
         var placeSelected = function (e) {
-            console.log(e.data);
-            app.mobileApp.navigate('views/placeMenuView.html?uid=' + e.data.uid);
+            app.mobileApp.navigate('views/placeMenuView.html?id=' + e.data.id);
         };
 
 
