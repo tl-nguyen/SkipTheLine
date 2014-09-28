@@ -39,6 +39,7 @@ app.Items = (function () {
                         click: function (e) {
                             if (e.dataItem !== undefined)
                             {
+                                navigator.notification.vibrate();
                                 console.log(e.dataItem);
                             }
                         }
