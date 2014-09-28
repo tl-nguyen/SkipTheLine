@@ -1,3 +1,6 @@
 */bin
 */obj
 *.user-settings.xml
+
+SkipTheLine/cef.log
+.idea
