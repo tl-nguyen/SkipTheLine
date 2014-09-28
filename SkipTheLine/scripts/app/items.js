@@ -4,21 +4,14 @@ app.Items = (function () {
     'use strict';
 
     var itemsViewModel = (function () {
+        
         var itemModel = {
             id: 'Id',
             fields: {
-                Name: {
-                    field: 'Name',
-                    defaultValue: ''
-                },
-                Description: {
-                    field: 'Description',
-                    defaultValue: ''
-                },
-                Price: {
-                    field: 'Price',
-                    defaultValue: ''
-                }
+                Name: 'Name',
+                Description: 'Description',
+                Price: 'Price',
+                WaitTime:'WaitTime'                
             }
         };
 

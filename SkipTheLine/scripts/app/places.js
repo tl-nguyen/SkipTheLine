@@ -11,10 +11,7 @@ app.Places = (function () {
             var placeModel = {
                 id: 'Id',
                 fields: {
-                    Name: {
-                        field: 'Name',
-                        defaultValue: ''
-                    }
+                    Name: 'Name',
                 }
             };
 
