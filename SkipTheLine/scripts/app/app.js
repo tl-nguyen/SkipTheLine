@@ -79,6 +79,14 @@ var app = (function (win) {
                                                      skin: 'flat'
                                                  });
     var appHelper = {
+        resolveImageUrl: function (id) {
+            if (id) {
+                return el.Files.getDownloadUrl(id);
+            }
+            else {
+                return '';
+            }
+        },
 //        // Return user profile picture url
 //        resolveProfilePictureUrl: function (id) {
 //            if (id && id !== emptyGuid) {

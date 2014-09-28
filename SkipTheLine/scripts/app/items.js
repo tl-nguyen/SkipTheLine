@@ -11,8 +11,12 @@ app.items = (function () {
                 Name: 'Name',
                 Description: 'Description',
                 Price: 'Price',
-                WaitTime:'WaitTime'                
-            }
+                WaitTime:'WaitTime',
+                Picture:'Picture',
+            },
+            PictureUrl: function () {
+                    return app.helper.resolveImageUrl(this.get('Picture'));
+            },
         };
 
         var itemsDataSource = new kendo.data.DataSource({
