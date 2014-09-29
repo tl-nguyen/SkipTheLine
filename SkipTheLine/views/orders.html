@@ -1,0 +1,27 @@
+<div data-role="view"
+     data-title="Order"
+     data-layout="main"
+     data-show="app.Orders.show">
+
+    <h1>CurrentOrder:</h1>
+
+
+    <a data-role="button">ORDER</a>
+    <h1>Histories:</h1>
+    <ul data-role="listview"
+      data-style="inset"
+      data-template="ordersTemplate"
+      data-bind="source: ordersDataSource">
+    </ul>
+
+</div>
+
+<script type="text/x-kendo-template" id="ordersTemplate">
+    <div>
+        <div class="order-content">
+            <h2>OrderId: #:Id#</h2>
+            <h4>CreatedAt: #:CreatedAtFormatted()#</h4>
+            <h4>Price: #:Price# $ </h4>
+        </div>
+    </div>
+</script>

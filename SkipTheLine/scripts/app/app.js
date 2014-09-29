@@ -79,29 +79,35 @@ var app = (function (win) {
                                                      skin: 'flat'
                                                  });
     var appHelper = {
-        // Return user profile picture url
-        resolveProfilePictureUrl: function (id) {
-            if (id && id !== emptyGuid) {
-                return el.Files.getDownloadUrl(id);
-            } else {
-                return 'styles/images/avatar.png';
-            }
-        },
-
-        // Return current activity picture url
-        resolvePictureUrl: function (id) {
-            if (id && id !== emptyGuid) {
-                return el.Files.getDownloadUrl(id);
-            } else {
-                return '';
-            }
-        },
-
+//        // Return user profile picture url
+//        resolveProfilePictureUrl: function (id) {
+//            if (id && id !== emptyGuid) {
+//                return el.Files.getDownloadUrl(id);
+//            } else {
+//                return 'styles/images/avatar.png';
+//            }
+//        },
+//
+//        // Return current activity picture url
+//        resolvePictureUrl: function (id) {
+//            if (id && id !== emptyGuid) {
+//                return el.Files.getDownloadUrl(id);
+//            } else {
+//                return '';
+//            }
+//        },
+//
         // Date formatter. Return date in d.m.yyyy format
         formatDate: function (dateString) {
             return kendo.toString(new Date(dateString), 'MMM d, yyyy');
         },
 
+        resolveCurrentUser: function () {
+            return el.Users.currentUser();
+        },
+        resolvePlaceById: function (id) {
+            return el.data('Place').getById(id);
+        },
         resolveCurrentLocation: function () {
             var deferred = new $.Deferred();
 
@@ -132,6 +138,7 @@ var app = (function (win) {
         isKeySet: isKeySet,
         mobileApp: mobileApp,
         everlive: el,
-        helper: appHelper
+        helper: appHelper,
+        currentOrder: []
     };
 }(window));

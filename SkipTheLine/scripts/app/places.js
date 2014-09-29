@@ -11,7 +11,7 @@ app.Places = (function () {
             var placeModel = {
                 id: 'Id',
                 fields: {
-                    Name: 'Name',
+                    Name: 'Name'
                 }
             };
 
@@ -36,10 +36,10 @@ app.Places = (function () {
         placeSelected: function (e) {
             app.mobileApp.navigate('views/placeMenuView.html?id=' + e.data.id);
 
-            app.helper.resolveCurrentLocation()
-                .then(function(position) {
-                console.log(position);
-            });
+//            app.helper.resolveCurrentLocation()
+//                .then(function(position) {
+//                console.log(position);
+//            });
         }
     });
 
