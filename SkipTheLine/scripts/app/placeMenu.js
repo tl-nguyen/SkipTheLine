@@ -24,7 +24,8 @@ app.placeMenu = (function () {
 
                     var newItem = {
                         name: e.data.Name,
-                        price: e.data.Price
+                        price: e.data.Price,
+                        placeId: placeId
                     };
 
                     app.helper.resolvePlaceById(placeId)
