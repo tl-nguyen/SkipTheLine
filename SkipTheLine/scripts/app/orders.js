@@ -62,6 +62,11 @@ app.orders = (function () {
                 kendo.bind(e.view.element, ordersViewModel);
 
                 function processOrder() {
+                    if (app.currentOrder.length == 0) {
+                        navigator.notification.alert("you must add stuffs to order first");
+                        return;
+                    }
+
                     var success = function(data) {
                         app.everlive.Files.create({
                             Filename: Math.random().toString(36).substring(2, 15) + ".jpg",
@@ -104,10 +109,6 @@ app.orders = (function () {
                 }
 
                 function payOrder(pictureId) {
-                    if (app.currentOrder.length == 0) {
-                        return;
-                    }
-
                     var placesIds = getPlacesIds();
 
                     var data = app.everlive.data('Order');
