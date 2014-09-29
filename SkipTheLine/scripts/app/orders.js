@@ -7,6 +7,7 @@ app.orders = (function () {
         app.helper.resolveCurrentUser()
             .then(function (user) {
                 var userId = user.result.Id;
+                var pictureId = '';
 
                 var ordersModel = {
                     id: 'Id',
@@ -49,23 +50,46 @@ app.orders = (function () {
                 var ordersViewModel = kendo.observable({
                     ordersDataSource: ordersDataSource,
                     currentOrderDataSource: currentOrderDataSource,
-                    removeItem: function (e) {
-                        var itemName = e.data.name;
-
-                        for(var i = 0; i < app.currentOrder.length; i++)
-                        {
-                            if (app.currentOrder[i].name == itemName) break;
-                        }
-
-                        app.currentOrder.splice(i, 1);
-                        currentOrderDataSource.read();
-                        calculateOrderTotalPrice();
-                    }
+                    removeItem: removeItem,
+                    processOrder: processOrder
                 });
 
-                $("#pay-btn").on('click', payOrder);
-
                 kendo.bind(e.view.element, ordersViewModel);
+
+                function processOrder() {
+                    //addImage();
+
+                    payOrder();
+                }
+
+                function addImage() {
+                    var success = function(data) {
+                        navigator.notification.alert("successful added image to order");
+                        console.log(data);
+                    };
+                    var error = function() {
+                        navigator.notification.alert("Unfortunately we could not add the image");
+                    };
+                    var config = {
+                        destinationType: Camera.DestinationType.DATA_URL,
+                        targetHeight: 400,
+                        targetWidth: 400
+                    };
+                    navigator.camera.getPicture(success, error, config);
+                }
+
+                function removeItem(e) {
+                    var itemName = e.data.name;
+
+                    for(var i = 0; i < app.currentOrder.length; i++)
+                    {
+                        if (app.currentOrder[i].name == itemName) break;
+                    }
+
+                    app.currentOrder.splice(i, 1);
+                    currentOrderDataSource.read();
+                    calculateOrderTotalPrice();
+                }
 
                 function calculateOrderTotalPrice() {
                     var totalPrice = 0;
@@ -146,21 +170,7 @@ app.orders = (function () {
                 }
             });
 
-        function addImage() {
-            var success = function(data) {
-                navigator.notification.alert("successful added image to order")
-                console.log(data);
-            };
-            var error = function() {
-                navigator.notification.alert("Unfortunately we could not add the image");
-            };
-            var config = {
-                destinationType: Camera.DestinationType.DATA_URL,
-                targetHeight: 400,
-                targetWidth: 400
-            };
-            navigator.camera.getPicture(success, error, config);
-        }
+
     }
 
     return {

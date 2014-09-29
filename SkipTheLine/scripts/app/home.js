@@ -12,7 +12,6 @@ app.home = (function () {
             return 'Hello ' + app.Users.currentUser.get('data').DisplayName;
         },
         onFindNearest: function () {
-            //TODO: Create a view for filtered data
             app.helper.resolveCurrentLocation()
                 .then(function (position) {
 
@@ -32,22 +31,18 @@ app.home = (function () {
                                     Id: data.result[i].Id
                                 };
 
-
-
                                 nearestPlaces.push(newPlace);
                             }
 
-                            var nearestPlacesDataSource = new kendo.data.DataSource({
+                            app.home.nearestPlacesDataSource = new kendo.data.DataSource({
                                 data: nearestPlaces
                             });
 
-                            app.home.nearestPlacesDataSource = nearestPlacesDataSource;
-
                             app.mobileApp.navigate('views/nearest.html');
-                            },
-                            function (error) {
-                                alert(JSON.stringify(error));
-                            });
+                        },
+                        function (error) {
+                            alert(JSON.stringify(error));
+                        });
             });
         }
     }
