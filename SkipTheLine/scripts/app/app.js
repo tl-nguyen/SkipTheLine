@@ -2,12 +2,11 @@ var app = (function (win) {
     'use strict';
 
     // Global error handling
-    var showAlert = function(message, title, callback) {
-        navigator.notification.alert(message, callback || function () {
-        }, title, 'OK');
+    var showAlert = function (message, title, callback) {
+        navigator.notification.alert(message, callback || function () {}, title, 'OK');
     };
 
-    var showError = function(message) {
+    var showError = function (message) {
         showAlert(message, 'Error occured');
     };
 
@@ -22,9 +21,8 @@ var app = (function (win) {
     });
 
     // Global confirm dialog
-    var showConfirm = function(message, title, callback) {
-        navigator.notification.confirm(message, callback || function () {
-        }, title, ['OK', 'Cancel']);
+    var showConfirm = function (message, title, callback) {
+        navigator.notification.confirm(message, callback || function () {}, title, ['OK', 'Cancel']);
     };
 
     var isNullOrEmpty = function (value) {
@@ -37,7 +35,7 @@ var app = (function (win) {
     };
 
     // Handle device back button tap
-    var onBackKeyDown = function(e) {
+    var onBackKeyDown = function (e) {
         e.preventDefault();
 
         navigator.notification.confirm('Do you really want to exit?', function (confirmed) {
@@ -51,16 +49,35 @@ var app = (function (win) {
         }, 'Exit', ['OK', 'Cancel']);
     };
 
-    var onDeviceReady = function() {
+    function checkConnection() {
+        var networkState = navigator.network.connection.type;
+
+        var states = {};
+        states[Connection.UNKNOWN] = 'Unknown connection';
+        states[Connection.ETHERNET] = 'Ethernet connection';
+        states[Connection.WIFI] = 'WiFi connection';
+        states[Connection.CELL_2G] = 'Cell 2G connection';
+        states[Connection.CELL_3G] = 'Cell 3G connection';
+        states[Connection.CELL_4G] = 'Cell 4G connection';
+        states[Connection.NONE] = 'No network connection';
+
+        if(states[networkState] == 'No network connection'){
+            app.mobileApp.navigate('views/noConnection.html', 'fade');
+        }
+    }
+
+    var onDeviceReady = function () {
         // Handle "backbutton" event
         document.addEventListener('backbutton', onBackKeyDown, false);
 
+        checkConnection();
+        
         navigator.splashscreen.hide();
     };
 
     // Handle "deviceready" event
     document.addEventListener('deviceready', onDeviceReady, false);
- 
+
     // Initialize Everlive SDK
     var el = new Everlive({
         apiKey: appSettings.everlive.apiKey,
@@ -74,16 +91,15 @@ var app = (function (win) {
 
     // Initialize KendoUI mobile application
     var mobileApp = new kendo.mobile.Application(document.body, {
-                                                     transition: 'slide',
-                                                     statusBarStyle: statusBarStyle,
-                                                     skin: 'flat'
-                                                 });
+        transition: 'slide',
+        statusBarStyle: statusBarStyle,
+        skin: 'flat'
+    });
     var appHelper = {
         resolveImageUrl: function (id) {
             if (id) {
                 return el.Files.getDownloadUrl(id);
-            }
-            else {
+            } else {
                 return '';
             }
         },
@@ -101,7 +117,7 @@ var app = (function (win) {
         resolveCurrentLocation: function () {
             var deferred = new $.Deferred();
 
-            var onSuccess = function(position) {
+            var onSuccess = function (position) {
                 deferred.resolve(position);
             };
 
