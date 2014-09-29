@@ -10,6 +10,8 @@
         data-bind="source: currentOrderDataSource">
     </ul>
 
+    <h1 id="totalPrice"></h1>
+
     <a data-role="button">ORDER</a>
     <h1>Histories:</h1>
     <ul data-role="listview"
@@ -17,6 +19,7 @@
       data-template="ordersTemplate"
       data-bind="source: ordersDataSource">
     </ul>
+
 
 </div>
 
@@ -29,6 +32,7 @@
         </div>
         <button data-role="button" data-bind="events: { click: removeItem }">Remove</button>
     </div>
+
 </script>
 
 

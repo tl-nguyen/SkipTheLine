@@ -39,6 +39,8 @@ app.orders = (function () {
                     }
                 });
 
+                calculateOrderTotalPrice();
+
                 var currentOrderDataSource = new kendo.data.DataSource({
                     data: app.currentOrder
                 });
@@ -56,11 +58,20 @@ app.orders = (function () {
 
                         app.currentOrder.splice(i, 1);
                         currentOrderDataSource.read();
+                        calculateOrderTotalPrice();
                     }
                 });
 
                 kendo.bind(e.view.element, ordersViewModel);
             });
+
+        function calculateOrderTotalPrice() {
+            var totalPrice = 0;
+            for (var j = 0; j < app.currentOrder.length; j++) {
+                totalPrice += app.currentOrder[j].price;
+            }
+            $("#totalPrice").text("Total: " + totalPrice + "$");
+        }
     }
 
     return {
