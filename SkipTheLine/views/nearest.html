@@ -1,0 +1,20 @@
+<div data-role="view"
+     data-title="What is around you"
+     data-layout="main">
+
+    <ul id="places-listview"
+        data-style="inset"
+        data-bind="source: placesNearbyDataSource"
+        data-role="listview"
+        data-template="nearestTemplate">
+    </ul>
+
+</div>
+
+<script type="text/x-kendo-template" id="nearestTemplate">
+    <div data-role="touch" data-bind="events: { tap: placeSelected }">
+        <div class="place-content">
+            <h2 class="place-name">#:Name#</h2>
+        </div>
+    </div>
+</script>
