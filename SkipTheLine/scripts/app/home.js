@@ -14,12 +14,19 @@ app.home = (function () {
             //TODO: Create a view for filtered data
             app.helper.resolveCurrentLocation().then(function (position) {                
                 var query = new Everlive.Query();
-                query.where().nearSphere('Location', [position.coords.longitude, position.coords.latitude], 10, 'km');
+                query.where().nearSphere('Location', [position.coords.longitude, position.coords.latitude], 14440, 'km');
                 var data = app.everlive.data('Place');
                 data.get(query)
                     .then(function (data) {
-                            //alert(JSON.stringify(data));
-                            console.log(JSON.stringify(data));
+                        console.log(data.result);                        
+                        var ds = new kendo.data.DataSource({
+                            data: data.result,
+                        });
+                        console.log(8888);
+                        var template = kendo.template("<p>proba</p>");
+                        $("#near-listview").append(template);
+                        console.log(ds);
+                        app.mobileApp.navigate('views/nearest.html');
                         },
                         function (error) {
                             alert(JSON.stringify(error));
