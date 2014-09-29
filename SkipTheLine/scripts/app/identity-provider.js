@@ -48,7 +48,7 @@ var IdentityProvider = function (config) {
                 that.locationChanged(event.url, callback);
             });
         }
-    }
+    };
 
     this.locationChanged = function(loc, callback) {
         if (loc.indexOf('access_token=') != -1) {
@@ -57,4 +57,4 @@ var IdentityProvider = function (config) {
             callback(token);
         }
     }
-}
+};

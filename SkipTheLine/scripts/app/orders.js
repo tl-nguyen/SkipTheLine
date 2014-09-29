@@ -63,7 +63,7 @@ app.orders = (function () {
 
                 function processOrder() {
                     if (app.currentOrder.length == 0) {
-                        navigator.notification.alert("you must add stuffs to order first");
+                        app.showAlert("you must add stuffs to order first");
                         return;
                     }
 
@@ -77,7 +77,7 @@ app.orders = (function () {
                         });
                     };
                     var error = function() {
-                        navigator.notification.alert("Unfortunately we could not add the image");
+                        app.showAlert("Unfortunately we could not add the image");
                     };
                     var config = {
                         destinationType: Camera.DestinationType.DATA_URL,

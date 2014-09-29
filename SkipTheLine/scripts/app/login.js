@@ -38,8 +38,8 @@ app.login = (function () {
         };
 
         var show = function () {
-//            $loginUsername.val('');
-//            $loginPassword.val('');
+            $loginUsername.val('');
+            $loginPassword.val('');
         };
 
         // Authenticate to use Backend Services as a particular user

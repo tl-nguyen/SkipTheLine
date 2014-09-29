@@ -12,7 +12,7 @@ app.items = (function () {
                 Description: 'Description',
                 Price: 'Price',
                 WaitTime:'WaitTime',
-                Picture:'Picture',
+                Picture:'Picture'
             },
             PictureUrl: function () {
                     return app.helper.resolveImageUrl(this.get('Picture'));

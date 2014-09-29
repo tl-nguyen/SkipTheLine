@@ -8,11 +8,11 @@ app.signup = (function () {
 
     var singupViewModel = (function () {
 
-        var dataSource;
-        var $signUpForm;
-        var $formFields;
-        var $signupBtnWrp;
-        var validator;
+        var dataSource,
+            $signUpForm,
+            $formFields,
+            $signupBtnWrp,
+            validator;
 
         // Register user after required fields (username and password) are validated in Backend Services
         var signup = function () {
@@ -55,7 +55,7 @@ app.signup = (function () {
                     $signupBtnWrp.addClass('disabled');
                 }
             });
-        }
+        };
 
         // Executed after show of the signup view
         var show = function () {
@@ -81,7 +81,7 @@ app.signup = (function () {
         var onSelectChange = function (sel) {
             var selected = sel.options[sel.selectedIndex].value;
             sel.style.color = (selected == 0) ? '#b6c5c6' : '#34495e';
-        }
+        };
 
         return {
             init: init,

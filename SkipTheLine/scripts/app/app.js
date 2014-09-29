@@ -1,4 +1,4 @@
-var app = (function (win) {
+var app = (function (window) {
     'use strict';
 
     // Global error handling
@@ -10,7 +10,7 @@ var app = (function (win) {
         showAlert(message, 'Error occured');
     };
 
-    win.addEventListener('error', function (e) {
+    window.addEventListener('error', function (e) {
         e.preventDefault();
 
         var message = e.message + "' from " + e.filename + ":" + e.lineno;
@@ -38,13 +38,13 @@ var app = (function (win) {
     var onBackKeyDown = function (e) {
         e.preventDefault();
 
-        navigator.notification.confirm('Do you really want to exit?', function (confirmed) {
+        app.showConfirm('Do you really want to exit?', 'Exit', function (confirmed) {
             var exit = function () {
                 navigator.app.exitApp();
             };
 
             if (confirmed === true || confirmed === 1) {
-                AppHelper.logout().then(exit, exit);
+                app.helper.logout().then(exit, exit);
             }
         }, 'Exit', ['OK', 'Cancel']);
     };
@@ -83,8 +83,6 @@ var app = (function (win) {
         apiKey: appSettings.everlive.apiKey,
         scheme: appSettings.everlive.scheme
     });
-
-    var emptyGuid = '00000000-0000-0000-0000-000000000000';
 
     var os = kendo.support.mobileOS,
         statusBarStyle = os.ios && os.flatVersion >= 700 ? 'black-translucent' : 'black';

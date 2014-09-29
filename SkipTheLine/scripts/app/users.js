@@ -10,7 +10,6 @@ app.Users = (function () {
     var usersModel = (function () {
 
         var currentUser = kendo.observable({ data: null });
-        var usersData;
 
         // Retrieve current user and all users data from Backend Services
         var loadUsers = function () {
@@ -25,23 +24,13 @@ app.Users = (function () {
 
                 // Get the data about all registered users
                 return app.everlive.Users.get();
-            })
-            .then(function (data) {
-
-                usersData = new kendo.data.ObservableArray(data.result);
-            })
-            .then(null,
-                  function (err) {
-                      app.showError(err.message);
-                  }
-            );
+            },function (err) {
+                    app.showError(err.message);
+            });
         };
 
         return {
             load: loadUsers,
-            users: function () {
-                return usersData;
-            },
             currentUser: currentUser
         };
 

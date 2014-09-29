@@ -15,12 +15,7 @@ app.placeMenu = (function () {
             var menuListViewModel = kendo.observable({
                 menuDataSource: app.items.itemsDataSource,
                 itemSelected: function (e) {
-                    navigator.notification.alert(
-                        'You Have Inserted ' + e.data.Type + ' item "' + e.data.Name + '" in the order',
-                        null,
-                        'Great Choice!',
-                        'Done'
-                    );
+                    app.showAlert('You Have Inserted ' + e.data.Type + ' item "' + e.data.Name + '" in the order', 'Greate Choice');
 
                     navigator.notification.vibrate();
 
