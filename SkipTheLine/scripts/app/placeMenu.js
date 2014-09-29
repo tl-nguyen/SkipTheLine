@@ -15,8 +15,23 @@ app.placeMenu = (function () {
             var menuListViewModel = kendo.observable({
                 menuDataSource: app.items.itemsDataSource,
                 itemSelected: function (e) {
+                    navigator.notification.alert(
+                        'You Have Inserted ' + e.data.Type + ' item "' + e.data.Name + '" in the order',
+                        null,
+                        'Great Choice!',
+                        'Done'
+                    );
 
-                    console.log(e.data);
+                    var newItem = {
+                        name: e.data.Name,
+                        price: e.data.Price
+                    };
+
+                    app.helper.resolvePlaceById(placeId)
+                        .then(function (place) {
+                            newItem.place = place.result.Name;
+                            app.currentOrder.push(newItem);
+                        });
                 }
             });
 

@@ -4,7 +4,11 @@
      data-show="app.orders.show">
 
     <h1>CurrentOrder:</h1>
-
+    <ul data-rol="listview"
+        data-style="inset"
+        data-template = "currentOrderTemplate"
+        data-bind="source: currentOrderDataSource">
+    </ul>
 
     <a data-role="button">ORDER</a>
     <h1>Histories:</h1>
@@ -16,9 +20,21 @@
 
 </div>
 
-<script type="text/x-kendo-template" id="ordersTemplate">
+<script type="text/x-kendo-template" id="currentOrderTemplate">
     <div>
         <div class="order-content">
+            <h2>Name: #:name#</h2>
+            <h3>Place: #:place#</h3>
+            <h4>Price: #:price# $</h4>
+        </div>
+        <button data-role="button" data-bind="events: { click: removeItem }">Remove</button>
+    </div>
+</script>
+
+
+<script type="text/x-kendo-template" id="ordersTemplate">
+    <div>
+        <div class="orders-content">
             <h2>OrderId: #:Id#</h2>
             <h4>CreatedAt: #:CreatedAtFormatted()#</h4>
             <h4>Price: #:Price# $ </h4>

@@ -39,12 +39,27 @@ app.orders = (function () {
                     }
                 });
 
+                var currentOrderDataSource = new kendo.data.DataSource({
+                    data: app.currentOrder
+                });
+
                 var ordersViewModel = kendo.observable({
-                    ordersDataSource: ordersDataSource
+                    ordersDataSource: ordersDataSource,
+                    currentOrderDataSource: currentOrderDataSource,
+                    removeItem: function (e) {
+                        var itemName = e.data.name;
+
+                        for(var i = 0; i < app.currentOrder.length; i++)
+                        {
+                            if (app.currentOrder[i].name == itemName) break;
+                        }
+
+                        app.currentOrder.splice(i, 1);
+                        currentOrderDataSource.read();
+                    }
                 });
 
                 kendo.bind(e.view.element, ordersViewModel);
-
             });
     }
 
