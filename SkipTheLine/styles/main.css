@@ -41,13 +41,21 @@
     background-color: transparent;
 }
 
+.btn-login, .btn-login-fb, .btn-login-google, .btn-search-around {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
 /*login buttons*/
+
 #skipTheLineApp .btn-login-fb {
     background-image: url(images/icon-facebook.png);
+    background-color: cornflowerblue;
 }
 
 #skipTheLineApp .btn-login-google {
     background-image: url(images/icon-google.png);
+    background-color: indianred;
 }
 
 #skipTheLineApp .oauth-item .btn {
@@ -61,7 +69,6 @@
     position: static;
     width: 100%;
     height: 40px;
-    font-size: 1rem;
 }
 
 #login-form .username:before,
@@ -104,9 +111,24 @@
     width: 50%;
     height: 20px;
     padding: 10px;
-
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     border-radius: 10px; /* future proofing */
     -khtml-border-radius: 10px; /* for old Konqueror browsers */
+}
+
+.btn-search-around, #pay-btn {
+    width: 95%;
+    margin: 10px;
+}
+
+#pay-btn {
+    font-size: 1.2rem;
+    font-weight: bolder;
+    height: 50px;
+    background-color: darkseagreen;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px; /* future proofing */
+    -khtml-border-radius: 50px; /* for old Konqueror browsers */
 }
