@@ -22,6 +22,8 @@ app.placeMenu = (function () {
                         'Done'
                     );
 
+                    navigator.notification.vibrate();
+
                     var newItem = {
                         name: e.data.Name,
                         price: e.data.Price,

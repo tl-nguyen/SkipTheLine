@@ -31,21 +31,21 @@
             <h3>Place: #:place#</h3>
             <h4>Price: #:price# $</h4>
         </div>
-        <button data-role="button" data-bind="events: { click: removeItem }">Remove</button>
+        <a class="remove-btn" data-role="button" data-bind="events: { click: removeItem }">Remove</a>
     </div>
 
 </script>
 
-
 <script type="text/x-kendo-template" id="ordersTemplate">
     <div>
         <div class="orders-content">
-            <h2>OrderId: #:Id#</h2>
             <img class="menu-pic" data-bind="attr:{src: PictureUrl}" />
+            <h3>OrderId: #:Id#</h3>
             <h4>CreatedAt: #:CreatedAtFormatted()#</h4>
             <h4>Place : #:PlaceName#</h4>
             <h4>Items: #:Items#</h4>
             <h4>Price: #:Price# $ </h4>
         </div>
     </div>
+    <hr />
 </script>

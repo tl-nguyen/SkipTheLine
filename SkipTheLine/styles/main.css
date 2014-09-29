@@ -97,3 +97,16 @@
 .menu-pic{
     width:100%;
 }
+
+.remove-btn {
+    background-color: #f1969b;
+    color: black;
+    width: 50%;
+    height: 20px;
+    padding: 10px;
+
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px; /* future proofing */
+    -khtml-border-radius: 10px; /* for old Konqueror browsers */
+}

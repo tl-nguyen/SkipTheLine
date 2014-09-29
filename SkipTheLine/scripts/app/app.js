@@ -106,7 +106,7 @@ var app = (function (win) {
             };
 
             var onError = function (error) {
-                alert('code: '    + error.code    + '\n' +
+                alert('code: ' + error.code + '\n' +
                     'message: ' + error.message + '\n');
             };
 
