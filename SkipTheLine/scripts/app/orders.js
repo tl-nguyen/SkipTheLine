@@ -14,12 +14,17 @@ app.orders = (function () {
                     fields: {
                         User: 'User',
                         Place: 'Place',
+                        PlaceName: 'PlaceName',
                         Price: 'Price',
                         Status: 'Status',
-                        Items: 'Items'
+                        Items: 'Items',
+                        Picture: 'Picture'
                     },
                     CreatedAtFormatted: function () {
                         return app.helper.formatDate(this.get('CreatedAt'));
+                    },
+                    PictureUrl: function () {
+                        return app.helper.resolveImageUrl(this.get('Picture'));
                     }
                 };
 
@@ -57,23 +62,22 @@ app.orders = (function () {
                 kendo.bind(e.view.element, ordersViewModel);
 
                 function processOrder() {
-                    //addImage();
-
-                    payOrder();
-                }
-
-                function addImage() {
                     var success = function(data) {
-                        navigator.notification.alert("successful added image to order");
-                        console.log(data);
+                        app.everlive.Files.create({
+                            Filename: Math.random().toString(36).substring(2, 15) + ".jpg",
+                            ContentType: "image/jpeg",
+                            base64: data
+                        }).then(function (picture) {
+                            payOrder(picture.result.Id);
+                        });
                     };
                     var error = function() {
                         navigator.notification.alert("Unfortunately we could not add the image");
                     };
                     var config = {
                         destinationType: Camera.DestinationType.DATA_URL,
-                        targetHeight: 400,
-                        targetWidth: 400
+                        targetHeight: 200,
+                        targetWidth: 200
                     };
                     navigator.camera.getPicture(success, error, config);
                 }
@@ -99,7 +103,7 @@ app.orders = (function () {
                     $("#totalPrice").text("Total: " + totalPrice + "$");
                 }
 
-                function payOrder() {
+                function payOrder(pictureId) {
                     if (app.currentOrder.length == 0) {
                         return;
                     }
@@ -112,10 +116,12 @@ app.orders = (function () {
                     {
                         var items = '';
                         var orderPrice = 0;
+                        var placeName = '';
 
                         for (var j = 0; j < app.currentOrder.length; j++)
                         {
                             if (app.currentOrder[j].placeId == placesIds[i]) {
+                                placeName = app.currentOrder[j].place;
                                 if (items == '') {
                                     items += app.currentOrder[j].name;
                                 }
@@ -128,10 +134,12 @@ app.orders = (function () {
 
                         data.create({
                             Place: placesIds[i],
+                            PlaceName: placeName,
                             Items: items,
                             Price: orderPrice,
                             User: userId,
-                            Status: 'Pending'
+                            Status: 'Pending',
+                            Picture: pictureId
                         }).then(function (data) {
                             console.log(data);
                         });
@@ -169,8 +177,6 @@ app.orders = (function () {
                     return placesIds;
                 }
             });
-
-
     }
 
     return {

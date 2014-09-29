@@ -14,14 +14,13 @@
     <h1 id="totalPrice"></h1>
     <img id="user-img" src="" />
 
-    <a id="pay-btn" data-role="button" data-bind="events: {click: processOrder}">PAY</a>
+    <a id="pay-btn" data-role="button" data-bind="events: {click: processOrder}">TAKE a SELFIE and PAY</a>
     <h1>Histories:</h1>
     <ul data-role="listview"
       data-style="inset"
       data-template="ordersTemplate"
       data-bind="source: ordersDataSource">
     </ul>
-
 
 </div>
 
@@ -42,7 +41,9 @@
     <div>
         <div class="orders-content">
             <h2>OrderId: #:Id#</h2>
+            <img class="menu-pic" data-bind="attr:{src: PictureUrl}" />
             <h4>CreatedAt: #:CreatedAtFormatted()#</h4>
+            <h4>Place : #:PlaceName#</h4>
             <h4>Items: #:Items#</h4>
             <h4>Price: #:Price# $ </h4>
         </div>

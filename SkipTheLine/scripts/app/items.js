@@ -16,7 +16,7 @@ app.items = (function () {
             },
             PictureUrl: function () {
                     return app.helper.resolveImageUrl(this.get('Picture'));
-            },
+            }
         };
 
         var itemsDataSource = new kendo.data.DataSource({
