@@ -1,7 +1,7 @@
 <div data-role="view"
      data-title="Places"
      data-layout="main"
-     data-model="app.Places.viewModel">
+     data-model="app.places.viewModel">
 
     <ul id="places-listview"
         data-style="inset"
@@ -12,7 +12,6 @@
 
 </div>
 
-<!-- Places ListView Template -->
 <script type="text/x-kendo-template" id="placeTemplate">
     <div data-role="touch" data-bind="events: { tap: placeSelected }">
         <div class="place-content">

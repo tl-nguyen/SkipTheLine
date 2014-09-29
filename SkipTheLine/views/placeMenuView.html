@@ -1,7 +1,7 @@
 <div data-role="view"
      data-title="Menu"
      data-layout="main"
-     data-show="app.PlaceMenu.show">
+     data-show="app.placeMenu.show">
     <ul id="items-listview"
         data-style="inset"
         data-role="listview"
@@ -9,7 +9,6 @@
         data-bind="source: menuDataSource"></ul>
 </div>
 
-<!-- Places ListView Template -->
 <script type="text/x-kendo-template" id="placeMenuTemplate">
     <div data-role="touch" data-bind="events: { tap: itemSelected }">
         <div class="item-content">

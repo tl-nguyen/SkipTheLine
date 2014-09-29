@@ -1,4 +1,12 @@
-<div data-role="view" id="signup" data-layout="login-signup" class="signup-view" data-model="app.Signup" data-init="app.Signup.init" data-show="app.Signup.show" data-hide="app.Signup.hide">
+<div data-role="view"
+     id="signup"
+     data-layout="login-signup"
+     class="signup-view"
+     data-model="app.signup"
+     data-init="app.signup.init"
+     data-show="app.signup.show"
+     data-hide="app.signup.hide">
+
     <div data-role="header">
         <div data-role="navbar">
             Sign up
@@ -23,7 +31,7 @@
                 <input type="date" id="signupBirthDatePicker" data-bind="value: BirthDate"/>
             </li>
             <li class="select-wrp">
-                <select id="signupGenderPicker" data-bind="value: Gender" onchange="app.Signup.onSelectChange(this)">
+                <select id="signupGenderPicker" data-bind="value: Gender" onchange="app.signup.onSelectChange(this)">
                     <option value="0" selected>Gender</option>
                     <option value="1">Male</option>
                     <option value="2">Female</option>

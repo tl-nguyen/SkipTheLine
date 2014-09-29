@@ -1,6 +1,6 @@
 var app = app || {};
 
-app.Home = (function () {
+app.home = (function () {
     'use strict';
 
     return {

@@ -1,6 +1,6 @@
 var app = app || {};
 
-app.Orders = (function () {
+app.orders = (function () {
     'use strict';
 
     function show(e) {

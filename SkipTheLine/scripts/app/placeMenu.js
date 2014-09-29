@@ -1,19 +1,19 @@
 var app = app || {};
 
-app.PlaceMenu = (function () {
+app.placeMenu = (function () {
     'use strict';
 
     function show(e){
             var placeId = e.view.params.id;
 
-            app.Items.itemsDataSource.filter({
+            app.items.itemsDataSource.filter({
                 field: 'Place',
                 operator: 'eq',
                 value: placeId
             });
 
             var menuListViewModel = kendo.observable({
-                menuDataSource: app.Items.itemsDataSource,
+                menuDataSource: app.items.itemsDataSource,
                 itemSelected: function (e) {
 
                     console.log(e.data);

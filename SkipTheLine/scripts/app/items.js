@@ -1,6 +1,6 @@
 var app = app || {};
 
-app.Items = (function () {
+app.items = (function () {
     'use strict';
 
     var itemsViewModel = (function () {

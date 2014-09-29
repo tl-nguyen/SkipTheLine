@@ -3,7 +3,7 @@
  */
 var app = app || {};
 
-app.Signup = (function () {
+app.signup = (function () {
     'use strict';
 
     var singupViewModel = (function () {
@@ -39,7 +39,7 @@ app.Signup = (function () {
             });
         };
 
-        // Executed after Signup view initialization
+        // Executed after signup view initialization
         // init form validator
         var init = function () {
 
@@ -57,7 +57,7 @@ app.Signup = (function () {
             });
         }
 
-        // Executed after show of the Signup view
+        // Executed after show of the signup view
         var show = function () {
 
             dataSource = kendo.observable({
@@ -73,7 +73,6 @@ app.Signup = (function () {
             kendo.bind($('#signup-form'), dataSource, kendo.mobile.ui);
         };
 
-        // Executed after hide of the Signup view
         // disable signup button
         var hide = function () {
             $signupBtnWrp.addClass('disabled');

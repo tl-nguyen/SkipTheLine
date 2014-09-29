@@ -1,6 +1,6 @@
 var app = app || {};
 
-app.Places = (function () {
+app.places = (function () {
     'use strict';
 
     var placesListViewModel = kendo.data.ObservableObject.extend({

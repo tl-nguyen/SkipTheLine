@@ -4,7 +4,7 @@
 
 var app = app || {};
 
-app.Login = (function () {
+app.login = (function () {
     'use strict';
 
     var loginViewModel = (function () {
