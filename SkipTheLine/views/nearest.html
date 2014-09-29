@@ -1,19 +1,21 @@
 <div data-role="view"
-     data-title="What is around you"
-     data-layout="main">
+     data-title="Nearest Places 5km from your position"
+     data-layout="main"
+    data-show="app.nearestPlaces.show">
 
-    <ul id="near-listview"
+    <ul id="places-listview"
         data-style="inset"
-        data-bind="source: placesNearbyDataSource"
-        data-role="listview">
+        data-bind="source: nearestPlacesDataSource"
+        data-role="listview"
+        data-template="nearestPlacesTemplate">
     </ul>
 
 </div>
 
-<script type="text/x-kendo-template" id="nearestTemplate">
+<script type="text/x-kendo-template" id="nearestPlacesTemplate">
     <div data-role="touch" data-bind="events: { tap: placeSelected }">
         <div class="place-content">
-            <h2 class="place-name">#:Name#</h2>
+            <h2 class="place-name">${Name}</h2>
         </div>
     </div>
 </script>

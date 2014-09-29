@@ -106,7 +106,8 @@ app.orders = (function () {
                             Place: placesIds[i],
                             Items: items,
                             Price: orderPrice,
-                            User: userId
+                            User: userId,
+                            Status: 'Pending'
                         }).then(function (data) {
                             console.log(data);
                         });
@@ -118,7 +119,7 @@ app.orders = (function () {
                     calculateOrderTotalPrice();
                     currentOrderDataSource.read();
 
-                    app.mobileApp.navigate("#successOrder");
+                    app.mobileApp.navigate("views/successPayment.html");
                 }
 
                 function getPlacesIds() {
@@ -160,7 +161,6 @@ app.orders = (function () {
             };
             navigator.camera.getPicture(success, error, config);
         }
-
     }
 
     return {
