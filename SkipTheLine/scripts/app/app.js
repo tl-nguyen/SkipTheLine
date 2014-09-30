@@ -123,7 +123,7 @@ var app = (function (window) {
             };
 
             var onError = function (error) {
-                alert('code: ' + error.code + '\n' +
+                app.showError('code: ' + error.code + '\n' +
                     'message: ' + error.message + '\n');
             };
 
