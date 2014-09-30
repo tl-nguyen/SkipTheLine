@@ -23,7 +23,6 @@ app.login = (function () {
                 app.mobileApp.navigate('views/noApiKey.html', 'fade');
             }
 
-
             $loginUsername = $('#loginUsername');
             $loginPassword = $('#loginPassword');
 

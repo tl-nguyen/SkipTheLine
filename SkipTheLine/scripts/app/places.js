@@ -34,7 +34,7 @@ app.places = (function () {
         },
 
         placeSelected: function (e) {
-            app.mobileApp.navigate('views/placeMenuView.html?id=' + e.data.id);
+            app.mobileApp.navigate('views/placeMenu.html?id=' + e.data.id);
         }
     });
 

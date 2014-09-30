@@ -38,10 +38,10 @@
 
 <script type="text/x-kendo-template" id="ordersTemplate">
     <div>
-        <div class="orders-content">
-            <img class="menu-pic" data-bind="attr:{src: PictureUrl}" />
+        <div class="order-content">
             <h3>OrderId: #:Id#</h3>
-            <h4>CreatedAt: #:CreatedAtFormatted()#</h4>
+            <img class="order-pic" data-bind="attr:{src: pictureUrl}" />
+            <h4>CreatedAt: #:createdAtFormatted()#</h4>
             <h4>Place : #:PlaceName#</h4>
             <h4>Items: #:Items#</h4>
             <h4>Price: #:Price# $ </h4>

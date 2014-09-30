@@ -7,59 +7,27 @@ app.orders = (function () {
         app.helper.resolveCurrentUser()
             .then(function (user) {
                 var userId = user.result.Id;
-                var pictureId = '';
 
-                var ordersModel = {
-                    id: 'Id',
-                    fields: {
-                        User: 'User',
-                        Place: 'Place',
-                        PlaceName: 'PlaceName',
-                        Price: 'Price',
-                        Status: 'Status',
-                        Items: 'Items',
-                        Picture: 'Picture'
-                    },
-                    CreatedAtFormatted: function () {
-                        return app.helper.formatDate(this.get('CreatedAt'));
-                    },
-                    PictureUrl: function () {
-                        return app.helper.resolveImageUrl(this.get('Picture'));
-                    }
-                };
-
-                var ordersDataSource = new kendo.data.DataSource({
-                    type: 'everlive',
-                    schema: {
-                        model: ordersModel
-                    },
-                    transport: {
-                        typeName: 'Order'
-                    },
-                    sort: {
-                        field: 'CreatedAt', dir: 'desc'
-                    },
-                    filter: {
-                        field: 'User',
-                        operator: 'eq',
-                        value: userId
-                    }
+                app.orderHistories.orderHistoriesDataSource.filter({
+                    field: 'User',
+                    operator: 'eq',
+                    value: userId
                 });
-
-                calculateOrderTotalPrice();
 
                 var currentOrderDataSource = new kendo.data.DataSource({
                     data: app.currentOrder
                 });
 
                 var ordersViewModel = kendo.observable({
-                    ordersDataSource: ordersDataSource,
+                    ordersDataSource: app.orderHistories.orderHistoriesDataSource,
                     currentOrderDataSource: currentOrderDataSource,
                     removeItem: removeItem,
                     processOrder: processOrder
                 });
 
                 kendo.bind(e.view.element, ordersViewModel);
+
+                calculateOrderTotalPrice();
 
                 function processOrder() {
                     if (app.currentOrder.length == 0) {
@@ -87,27 +55,6 @@ app.orders = (function () {
                     navigator.camera.getPicture(success, error, config);
                 }
 
-                function removeItem(e) {
-                    var itemName = e.data.name;
-
-                    for(var i = 0; i < app.currentOrder.length; i++)
-                    {
-                        if (app.currentOrder[i].name == itemName) break;
-                    }
-
-                    app.currentOrder.splice(i, 1);
-                    currentOrderDataSource.read();
-                    calculateOrderTotalPrice();
-                }
-
-                function calculateOrderTotalPrice() {
-                    var totalPrice = 0;
-                    for (var j = 0; j < app.currentOrder.length; j++) {
-                        totalPrice += app.currentOrder[j].price;
-                    }
-                    $("#totalPrice").text("Total: " + totalPrice + "$");
-                }
-
                 function payOrder(pictureId) {
                     var placesIds = getPlacesIds();
 
@@ -115,9 +62,9 @@ app.orders = (function () {
 
                     for (var i =0; i < placesIds.length; i++)
                     {
-                        var items = '';
-                        var orderPrice = 0;
-                        var placeName = '';
+                        var items = '',
+                            orderPrice = 0,
+                            placeName = '';
 
                         for (var j = 0; j < app.currentOrder.length; j++)
                         {
@@ -145,7 +92,7 @@ app.orders = (function () {
                             console.log(data);
                         });
 
-                        ordersDataSource.read();
+                        app.orderHistories.orderHistoriesDataSource.read();
                     }
 
                     app.currentOrder = [];
@@ -155,14 +102,38 @@ app.orders = (function () {
                     app.mobileApp.navigate("views/successPayment.html");
                 }
 
+                function removeItem(e) {
+                    var itemName = e.data.name,
+                        i;
+
+                    for(i = 0; i < app.currentOrder.length; i += 1)
+                    {
+                        if (app.currentOrder[i].name == itemName) break;
+                    }
+
+                    app.currentOrder.splice(i, 1);
+                    currentOrderDataSource.read();
+                    calculateOrderTotalPrice();
+                }
+
+                function calculateOrderTotalPrice() {
+                    var totalPrice = 0,
+                        j;
+                    for (j = 0; j < app.currentOrder.length; j += 1) {
+                        totalPrice += app.currentOrder[j].price;
+                    }
+                    $("#totalPrice").text("Total: " + totalPrice + "$");
+                }
+
                 function getPlacesIds() {
-                    var placesIds = [];
-                    for(var i = 0; i < app.currentOrder.length; i++)
+                    var placesIds = [],
+                        i, j;
+                    for(i = 0; i < app.currentOrder.length; i += 1)
                     {
                         var currentPlaceId = app.currentOrder[i].placeId;
                         var isExist = false;
 
-                        for(var j = 0; j < placesIds.length; j++)
+                        for(j = 0; j < placesIds.length; j += 1)
                         {
                             if (currentPlaceId == placesIds[j]) {
                                 isExist = true;

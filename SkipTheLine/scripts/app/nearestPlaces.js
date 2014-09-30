@@ -8,7 +8,7 @@ app.nearestPlaces = (function () {
         var nearestPlacesList = kendo.observable({
             nearestPlacesDataSource: app.home.nearestPlacesDataSource,
             placeSelected: function (e) {
-                app.mobileApp.navigate('views/placeMenuView.html?id=' + e.data.Id);
+                app.mobileApp.navigate('views/placeMenu.html?id=' + e.data.Id);
             }
         });
 

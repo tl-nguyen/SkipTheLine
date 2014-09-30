@@ -93,6 +93,7 @@ var app = (function (window) {
         statusBarStyle: statusBarStyle,
         skin: 'flat'
     });
+
     var appHelper = {
         resolveImageUrl: function (id) {
             if (id) {
@@ -101,7 +102,7 @@ var app = (function (window) {
                 return '';
             }
         },
-        // Date formatter. Return date in d.m.yyyy format
+
         formatDate: function (dateString) {
             return kendo.toString(new Date(dateString), 'dddd dd MMM, yyyy hh:mmtt');
         },
@@ -109,9 +110,11 @@ var app = (function (window) {
         resolveCurrentUser: function () {
             return el.Users.currentUser();
         },
+
         resolvePlaceById: function (id) {
             return el.data('Place').getById(id);
         },
+
         resolveCurrentLocation: function () {
             var deferred = new $.Deferred();
 
@@ -129,7 +132,6 @@ var app = (function (window) {
             return deferred.promise();
         },
 
-        // Current user logout
         logout: function () {
             return el.Users.logout();
         }

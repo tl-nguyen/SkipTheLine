@@ -14,8 +14,8 @@ app.items = (function () {
                 WaitTime:'WaitTime',
                 Picture:'Picture'
             },
-            PictureUrl: function () {
-                    return app.helper.resolveImageUrl(this.get('Picture'));
+            pictureUrl: function () {
+                return app.helper.resolveImageUrl(this.get('Picture'));
             }
         };
 
