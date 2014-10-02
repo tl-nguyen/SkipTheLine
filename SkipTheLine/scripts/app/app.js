@@ -5,6 +5,7 @@ var app = (function (window) {
     var showAlert = function (message, title, callback) {
         navigator.notification.alert(message, callback || function () {}, title, 'OK');
     };
+    
 
     var showError = function (message) {
         showAlert(message, 'Error occured');
