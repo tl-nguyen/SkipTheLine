@@ -4,9 +4,7 @@ var app = (function (window) {
     // Global error handling
     var showAlert = function (message, title, callback) {
         navigator.notification.alert(message, callback || function () {}, title, 'OK');
-    };
-    
-
+    };   
     var showError = function (message) {
         showAlert(message, 'Error occured');
     };
