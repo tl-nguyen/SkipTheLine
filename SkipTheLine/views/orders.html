@@ -5,7 +5,7 @@
 
     <h1>CurrentOrder:</h1>
     <ul id="currentOrder"
-        data-rol="listview"
+        data-role="listview"
         data-style="inset"
         data-template = "currentOrderTemplate"
         data-bind="source: currentOrderDataSource">
@@ -18,7 +18,7 @@
     <h1>Histories:</h1>
     <ul data-role="listview"
       data-style="inset"
-      data-template="ordersTemplate"
+      data-template="ordersHistoriesTemplate"
       data-bind="source: ordersDataSource">
     </ul>
 
@@ -36,7 +36,7 @@
 
 </script>
 
-<script type="text/x-kendo-template" id="ordersTemplate">
+<script type="text/x-kendo-template" id="ordersHistoriesTemplate">
     <div>
         <div class="order-content">
             <h2>OrderId: #:Id#</h2>
@@ -44,6 +44,7 @@
             <h4>CreatedAt: #:createdAtFormatted()#</h4>
             <h4>Place : #:PlaceName#</h4>
             <h4>Items: #:Items#</h4>
+            <h4>Status: #:Status#</h4>
             <h4>Price: #:Price# $ </h4>
         </div>
     </div>    
